@@ -4,8 +4,20 @@ const router = Router()
 
 const shaders = [
   {
-    name: 'hello',
-    path: '01'
+    title: 'アングラノイズ',
+    link: {
+      name: 'shader-id',
+      params: {id: '10-cam'},
+      query: {c: 'true'}
+    }
+  },
+  {
+    title: 'ポスタリゼーション',
+    link: {
+      name: 'shader-id',
+      params: {id: 'posterization'},
+      query: {t: 'leaf.jpg'}
+    }
   }
 ]
 

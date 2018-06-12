@@ -33,7 +33,7 @@ void main(void) {
     p = mod( p*5.0, 1.0 );
 
     float d = light( p );
-    d = clamp(d, 0.0, 1.0);
+//    d = clamp(d, 0.0, 1.0);
 
     float r = d * abs(sin(time));
     float g = d * 0.3;

@@ -20,13 +20,13 @@ void main (void) {
 
   color = texture2D(camera, uv).rgb;
 
-  float chaos = m.x * PI * 0.5;
-  chaos = abs(tan(chaos));
+  float chaos = time * 0.2 * PI * 0.5;
+//  chaos = mouse.xy / resolution.xy;
+  chaos = abs(sin(chaos));
   chaos += 2.0;
 
-  color = step(0.5, fract(chaos * color));
-  //  color.g = step(0.5, fract(chaos * color.g));
-  //  color.b = step(0.5, fract(chaos * color.b));
+  color = step(0.2, fract(chaos * color));
+  color = 1.0 - color;
 
   gl_FragColor = vec4(color, 1.0);
 }

@@ -4,7 +4,7 @@
     h1.title SHADERS
     ul.shaders
       li.shader(v-for="(shader, index) in shaders", :key="index")
-        nuxt-link(:to="`shader/${shader.path}`") {{ shader.name }}
+        nuxt-link(:to="shader.link") {{ shader.title }}
 </template>
 
 <script>

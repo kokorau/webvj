@@ -22,6 +22,10 @@ export default {
   methods: {
     setCamera () {
       const video = document.createElement('video')
+
+      // === dev ===
+      document.getElementById('glsl-canvas').appendChild(video)
+
       const texture = new THREE.VideoTexture(video);
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;

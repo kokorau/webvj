@@ -13,15 +13,12 @@ uniform sampler2D texture;
 uniform sampler2D camera;
 
 void main (void) {
-  vec3 color = vec3(0.0);
   vec2 uv = gl_FragCoord.xy / resolution.xy;
+  vec4 color = texture2D(camera, uv);
 
-  color = texture2D(camera, uv).rgb;
+  color.r = texture2D(texture, vec2(uv.x + sin(time * 123.45) * 0.2, uv.y)).r;
+  color.g = texture2D(texture, vec2(uv.x + sin(time * 457.67) * 0.2, uv.x)).g;
+  color.b = texture2D(texture, vec2(uv.x + sin(time * 9123.67) * 0.2, uv.y)).b;
 
-  float chaos = log(time * 5.0 + E);
-  color.r = step(0.5, fract(chaos * color.r));
-  color.g = step(0.5, fract(chaos * color.g));
-  color.b = step(0.5, fract(chaos * color.b));
-
-  gl_FragColor = vec4(color, 1.0);
+  gl_FragColor = color;
 }

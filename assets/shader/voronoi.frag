@@ -12,16 +12,14 @@ void main(void) {
 
   vec3 color = vec3(0.0);
 
-  vec2 point[8];
+  const int amount = 4;
+  vec2 point[amount][amount];
 
-  point[0] = vec2(0.83,0.75);
-  point[1] = vec2(0.60,0.07);
-  point[2] = vec2(0.20,0.89);
-  point[3] = vec2((cos(time * 0.3) * 0.4) + 0.5, (sin(time * 0.3) * 0.4) + 0.5);
-  point[4] =  vec2(0.31,0.26);
-  point[5] =  vec2(0.4,0.2);
-  point[6] =  vec2(0.58,0.90);
-  point[7] = vec2(mouse.x / resolution.x, 1.0 - mouse.y / resolution.y);
+  for (int i=0; i < amount; i++) {
+    for (int j=0; j < amount; j++) {
+      point[i][j] = vec2(float(i / amount), float(j /amount));
+    }
+  }
 
   float min_dist = 1.0;
   vec2 min_point = vec2(0.0);

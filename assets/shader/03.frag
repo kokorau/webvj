@@ -13,7 +13,7 @@ void main (void) {
   vec3 color = texture2D(texture, uv).rgb;
 
   float a = abs(sin(time));
-  float r = step(0.7, color.r);
+  float r = step(abs(sin(time)), color.r);
   float g = 0.6;
   float b = 0.7;
 

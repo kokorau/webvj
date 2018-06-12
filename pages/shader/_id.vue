@@ -4,7 +4,7 @@
       glsl-canvas(
         :fragmentShader="getFragmentShader()",
         :texture="texture && require(`@/assets/image/${texture}`)",
-        :music="music && require(`@/assets/music/${music}`)",
+        :music-path="music",
         :is-mic="mic",
         :is-camera="camera"
       )

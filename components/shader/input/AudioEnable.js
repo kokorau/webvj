@@ -11,36 +11,42 @@ export default {
       default: false,
       required: false
     },
-    music: {
+    musicPath: { // AudioNode
       default: null,
       required: false
     }
   },
   data () {
     return {
-      buffer: null
+      uniforms: {},
+      buffer: null,
+      ctx: null,
+      oscillator: null,
+      audio: null,
+      music: null
     }
   },
   mounted () {
-    if (this.isMic || this.music) {
-      try {
-        this.audioCtx = new window.AudioContext()
-      } catch (e) {
-        console.log(e)
-      }
+    if (!this.musicPath) {return}
+    this.ctx = new AudioContext()
 
-      const audio = new Audio(this.music)
+    fetch(require(`@/assets/music/${this.musicPath}`)).then(res => {
+      return res.arrayBuffer()
+    }).then(arrayBuffer => {
+      return this.ctx.decodeAudioData(arrayBuffer)
+    }).then(buffer => {
+      this.audio = buffer
+    })
 
-      audio.play()
-
-      this.playAudio()
-    }
+    this.playAudio()
   },
   methods: {
+    setAudio () {
+    },
     playAudio () {
-      const source = this.audioCtx.createBufferSource()
-      source.buffer = this.buffer
-      source.connect(this.audioCtx.destination)
+      const source = this.ctx.createBufferSource()
+      source.buffer = this.audio
+      source.connect(this.ctx.destination)
       source.start(0)
     }
   }
